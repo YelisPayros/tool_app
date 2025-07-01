@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'screens/home_screen.dart';
 import 'screens/gender_predictor_screen.dart';
 import 'screens/age_predictor_screen.dart';
+import 'screens/universities_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -22,6 +23,7 @@ class MyApp extends StatelessWidget {
       '/': (context) => const HomeScreen(),
       '/gender': (context) => const GenderPredictorScreen(),
       '/age': (context) => const AgePredictorScreen(),
+      '/universities': (context) => const UniversitiesScreen(),
     },
     );
   }
