@@ -6,12 +6,12 @@ class AboutScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.transparent,
+      extendBodyBehindAppBar: true,
       appBar: AppBar(
         title: const Text(
           'Contrátame',
           style: TextStyle(
-            color: Color(0xFF5C3A21), // Marrón oscuro
+            color: Colors.white,
             fontWeight: FontWeight.bold,
           ),
         ),
@@ -27,56 +27,58 @@ class AboutScreen extends StatelessWidget {
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
             colors: [
-              Color(0xFFD7C1A1), // Marrón claro arriba
-              Color(0xFF5C3A21), // Marrón oscuro abajo
+              Color(0xFFB1D9FF),
+              Color(0xFF2592D8),
             ],
           ),
         ),
-        child: Center(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 30),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                const CircleAvatar(
-                  backgroundImage: AssetImage('assets/images/yo.jpeg'),
-                  radius: 70,
-                ),
-                const SizedBox(height: 20),
-                const Text(
-                  'Yelis Nicole Payero Rosa',
-                  style: TextStyle(
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
+        child: SafeArea(
+          child: Center(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 30),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const CircleAvatar(
+                    backgroundImage: AssetImage('assets/images/yo.jpeg'),
+                    radius: 70,
                   ),
-                  textAlign: TextAlign.center,
-                ),
-                const SizedBox(height: 20),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: const [
-                    Icon(Icons.email, color: Colors.white),
-                    SizedBox(width: 10),
-                    Text(
-                      'Nicolepayros@gmail.com',
-                      style: TextStyle(color: Colors.white, fontSize: 16),
+                  const SizedBox(height: 20),
+                  const Text(
+                    'Yelis Nicole Payero Rosa',
+                    style: TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
                     ),
-                  ],
-                ),
-                const SizedBox(height: 12),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: const [
-                    Icon(Icons.phone, color: Colors.white),
-                    SizedBox(width: 10),
-                    Text(
-                      '+1 849-651-5909',
-                      style: TextStyle(color: Colors.white, fontSize: 16),
-                    ),
-                  ],
-                ),
-              ],
+                    textAlign: TextAlign.center,
+                  ),
+                  const SizedBox(height: 20),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: const [
+                      Icon(Icons.email, color: Colors.white),
+                      SizedBox(width: 10),
+                      Text(
+                        'Nicolepayros@gmail.com',
+                        style: TextStyle(color: Colors.white, fontSize: 16),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 12),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: const [
+                      Icon(Icons.phone, color: Colors.white),
+                      SizedBox(width: 10),
+                      Text(
+                        '+1 849-651-5909',
+                        style: TextStyle(color: Colors.white, fontSize: 16),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
           ),
         ),

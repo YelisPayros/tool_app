@@ -20,10 +20,7 @@ class _WordPressNewsScreenState extends State<WordPressNewsScreen> {
 
   Future<void> _launchUrl(String url) async {
     final uri = Uri.parse(url);
-    if (!await launchUrl(
-      uri,
-      mode: LaunchMode.externalApplication,
-    )) {
+    if (!await launchUrl(uri, mode: LaunchMode.externalApplication)) {
       throw 'No se pudo abrir $url';
     }
   }
@@ -31,13 +28,18 @@ class _WordPressNewsScreenState extends State<WordPressNewsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Noticias Rolling Stone')),
+      backgroundColor: Colors.white, // ✅ Fondo blanco limpio
+      appBar: AppBar(
+        title: const Text('Noticias Rolling Stone'),
+        backgroundColor: Colors.transparent,
+        foregroundColor: Colors.black87,
+        elevation: 0,
+      ),
       body: Column(
         children: [
           const SizedBox(height: 20),
-          // ✅ LOGO LOCAL DESDE ASSETS
           Image.asset(
-            'assets/images/rollingstone_logo.png', // Asegúrate que el nombre coincida
+            'assets/images/rollingstone_logo.png',
             height: 80,
           ),
           const SizedBox(height: 20),
@@ -48,7 +50,9 @@ class _WordPressNewsScreenState extends State<WordPressNewsScreen> {
                 if (snapshot.connectionState == ConnectionState.waiting) {
                   return const Center(child: CircularProgressIndicator());
                 } else if (snapshot.hasError) {
-                  return Center(child: Text('Error: ${snapshot.error}'));
+                  return Center(
+                    child: Text('Error: ${snapshot.error}'),
+                  );
                 } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
                   return const Center(child: Text('No hay noticias.'));
                 }
@@ -59,20 +63,47 @@ class _WordPressNewsScreenState extends State<WordPressNewsScreen> {
                   itemBuilder: (context, index) {
                     final post = posts[index];
                     return Card(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      elevation: 4,
                       margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                      child: ListTile(
-                        title: Text(
-                          post['title'],
-                          style: const TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                        subtitle: Text(
-                          post['excerpt'].replaceAll(RegExp(r'<[^>]*>'), ''),
-                          maxLines: 3,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                        trailing: TextButton(
-                          child: const Text('Visitar'),
-                          onPressed: () => _launchUrl(post['link']),
+                      child: Padding(
+                        padding: const EdgeInsets.all(16),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              post['title'],
+                              style: const TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 18,
+                              ),
+                            ),
+                            const SizedBox(height: 8),
+                            Text(
+                              post['excerpt'].replaceAll(RegExp(r'<[^>]*>'), ''),
+                              maxLines: 3,
+                              overflow: TextOverflow.ellipsis,
+                              style: const TextStyle(color: Colors.black87),
+                            ),
+                            const SizedBox(height: 12),
+                            Align(
+                              alignment: Alignment.centerRight,
+                              child: ElevatedButton.icon(
+                                onPressed: () => _launchUrl(post['link']),
+                                icon: const Icon(Icons.open_in_new),
+                                label: const Text('Visitar'),
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor: Colors.blue.shade800,
+                                  foregroundColor: Colors.white,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(8),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                     );
