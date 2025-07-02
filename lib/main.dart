@@ -4,6 +4,7 @@ import 'screens/gender_predictor_screen.dart';
 import 'screens/age_predictor_screen.dart';
 import 'screens/weather_screen.dart';
 import 'screens/pokemon_screen.dart';
+import 'screens/wordpress_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -26,6 +27,7 @@ class MyApp extends StatelessWidget {
       '/age': (context) => const AgePredictorScreen(),
       '/weather': (context) => const WeatherScreen(),
       '/pokemon': (context) => const PokemonScreen(),
+      '/wordpress': (context) => const WordPressNewsScreen(),
     },
     );
   }
